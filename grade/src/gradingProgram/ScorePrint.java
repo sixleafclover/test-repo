@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public interface ScorePrint {
 	
+	final String korean = "국어";
+	final String math = "수학";
+	final String dance = "방송댄스";
+	
 	//학점 부여 정책
 	
 		// 필수과목 S~F
@@ -49,17 +53,22 @@ public interface ScorePrint {
 		}
 	}
 	
-	//국어 수강생 점수 산출
-	static void koreanscore(ArrayList<Student> studentList) {
+	//기본 프린트
+	static void subjectPrint(String subject) {
 		System.out.println("---------------------------------");
-		System.out.println("         국어  수강생  학점                ");
+		System.out.printf("         %s  수강생  학점                \n",subject);
 		System.out.println(" 이름 |   학번   |중점과목|점수 : 학점");
 		System.out.println("---------------------------------");
+	}
+	
+	//국어 수강생 점수 산출
+	static void koreanscore(ArrayList<Student> studentList) {
+		subjectPrint(korean);
 		for(Student stu : studentList) {
-			if(stu instanceof KoreanStudent) {
+			if(stu.getRequireSub().equals(korean)) {
 				System.out.print(stu.toString()+stu.getKorScore()+" :  ");
 				System.out.println(getRequiedGrade(stu.getKorScore()));
-			}else if(!(stu instanceof KoreanStudent)) {
+			}else if(!(stu.getRequireSub().equals(korean))) {
 				System.out.print(stu.toString()+stu.getKorScore()+" :  ");
 				System.out.println(getnoRequiedGrade(stu.getKorScore()));
 			}else {
@@ -67,17 +76,14 @@ public interface ScorePrint {
 			}
 		}
 	}
-	//수학 수강생 점수 산출
+//	수학 수강생 점수 산출
 	static void mathscore(ArrayList<Student> studentList) {
-		System.out.println("---------------------------------");
-		System.out.println("         수학  수강생  학점                ");
-		System.out.println(" 이름 |   학번   |중점과목|점수 : 학점");
-		System.out.println("---------------------------------");
+		subjectPrint(math);
 		for(Student stu : studentList) {
-			if(stu instanceof ComputerStudent) {
+			if(stu.getRequireSub().equals(math)) {
 				System.out.print(stu.toString()+stu.getMathScore()+" :  ");
 				System.out.println(getRequiedGrade(stu.getMathScore()));
-			}else if(!(stu instanceof ComputerStudent)) {
+			}else if(!(stu.getRequireSub().equals(math))) {
 				System.out.print(stu.toString()+stu.getMathScore()+" :  ");
 				System.out.println(getnoRequiedGrade(stu.getMathScore()));
 			}else {
@@ -87,10 +93,7 @@ public interface ScorePrint {
 	}
 	//방송댄스 수강생 점수 산출
 	static void dancescore(ArrayList<Student> studentList) {
-		System.out.println("---------------------------------");
-		System.out.println("         방송댄스  수강생  학점                ");
-		System.out.println(" 이름 |   학번   |중점과목|점수 : 학점");
-		System.out.println("---------------------------------");
+		subjectPrint(dance);
 		for(Student stu : studentList) {
 			if(stu.getDanceScore()!= -1) {
 				System.out.print(stu.toString()+stu.getDanceScore()+" :  ");

@@ -2,7 +2,7 @@ package gradingProgram;
 
 import java.util.HashMap;
 
-public class Student{
+public abstract class Student implements ScorePrint{
 
 	//필 (이름 점수 private)
 	private String stName;
@@ -13,7 +13,8 @@ public class Student{
 	private int mathScore;
 	private int korScore;
 	private int danceScore;
-	//스태틱으로 학변 인덱스 적립
+	
+	//스태틱으로 해시맵에 학번 인덱스 적립
 	static HashMap<String,Integer> idxfinder = new HashMap<>();
 	
 	//생
@@ -38,7 +39,14 @@ public class Student{
 	public String toString() {
 		return getStName()+" | "+stNum;
 	}
+	abstract String getRequireSub();
 	
+	public int score(String subject) {
+		if(subject.equals(korean)) return korScore;
+		else if(subject.equals(math)) return mathScore;
+		else return 0;
+		
+	}
 	
 	//getter /setter
 	public String getStName() {

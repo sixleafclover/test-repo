@@ -3,8 +3,8 @@ package gradingProgram;
 public class ComputerStudent extends Student {
 	
 	//필
-	final String requireSub = "수학";
-	final String subject = "컴퓨터공학과";
+	final String requireSub = math;
+	final String department = "컴퓨터공학과";
 	
 
 	public ComputerStudent() {
@@ -20,6 +20,11 @@ public class ComputerStudent extends Student {
 	@Override
 	public String toString() {
 		return super.toString()+" | "+requireSub+" | ";
+	}
+
+	@Override
+	String getRequireSub() {
+		return requireSub;
 	}
 	
 	

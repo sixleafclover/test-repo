@@ -3,8 +3,8 @@ package gradingProgram;
 public class KoreanStudent extends Student {
 	
 	//필
-	String requireSub="국어";
-	String subject = "국어국문학과";
+	public String requireSub=korean;
+	String department = "국어국문학과";
 	
 
 	public KoreanStudent() {
@@ -20,6 +20,11 @@ public class KoreanStudent extends Student {
 	@Override
 	public String toString() {
 		return super.toString()+" | "+requireSub+" | ";
+	}
+
+	@Override
+	String getRequireSub() {
+		return requireSub;
 	}
 	
 	
